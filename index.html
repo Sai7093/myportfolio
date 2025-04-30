@@ -165,33 +165,8 @@
  <p id="visit-count">Total profile views: loading...</p>
   <p>Created with ❤️ using ChatGPT</p>
 </footer>
-  <script>
-    // Function to get the visit count from local storage
-    function getVisitCount() {
-      let count = localStorage.getItem('visitCount');
-      return count ? parseInt(count) : 0;
-    }
-
-    // Function to set the visit count in local storage
-    function setVisitCount(count) {
-      localStorage.setItem('visitCount', count);
-    }
-
-    // Function to update the visit count on the page
-    function updateVisitCountDisplay() {
-      let count = getVisitCount();
-      count++;
-      setVisitCount(count);
-      document.getElementById('visit-count').textContent = `Total profile views: ${count}`;
-    }
-
-    // Call the function when the page loads
-    window.onload = updateVisitCountDisplay;
-  </script>
-
-
-        
- <!-- Firebase SDKs -->
+  
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
@@ -213,19 +188,21 @@
 
   counterRef.get().then((doc) => {
     if (doc.exists) {
-      counterRef.update({ count: firebase.firestore.FieldValue.increment(1) });
+      const previousCount = doc.data().count;
       document.getElementById("visit-count").textContent =
-        "Total profile views: " + (doc.data().count + 1);
+        "Total profile views before you: " + previousCount;
+
+      counterRef.update({ count: firebase.firestore.FieldValue.increment(1) });
     } else {
+      // First time setup
+      document.getElementById("visit-count").textContent = "You are the first visitor!";
       counterRef.set({ count: 1 });
-      document.getElementById("visit-count").textContent = "Total profile views: 1";
     }
   }).catch((error) => {
     console.error("Error fetching view count:", error);
     document.getElementById("visit-count").textContent = "Total profile views: unavailable";
   });
 </script>
-
 
 
 </body>
