@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,12 +158,27 @@
     <a href="mailto:emandi.sai23@gmail.com" class="btn">Hire Me</a>
     <a href="tel:+917093410660" class="btn">Call Me</a>
   </div>
-
 </section>
 
 <footer>
-  <p>© 2025 Sai Krishna Emandi | emandi.sai24@gmail.com | +91 7093410660</p>
+ <p>© 2025 Sai Krishna Emandi | emandi.sai24@gmail.com | +91 7093410660</p>
+  <p id="visit-count">Total profile views: loading...</p>
+  <p>Created with ❤️ using ChatGPT</p>
 </footer>
+
+<!-- Visitor Count and Popup Script -->
+<script>
+ // Global visitor count using CountAPI
+  fetch('https://api.countapi.xyz/hit/sai-krishna-profile/visits')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("visit-count").textContent = "Total profile views: " + data.value;
+    })
+    .catch(error => {
+      console.error("Visitor count fetch error:", error);
+      document.getElementById("visit-count").textContent = "Total profile views: unavailable";
+    });
+</script>
 
 </body>
 </html>
