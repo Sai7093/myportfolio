@@ -159,16 +159,51 @@
     <a href="tel:+917093410660" class="btn">Call Me</a>
   </div>
 </section>
-
+  
 <footer>
   <p>© 2025 Sai Krishna Emandi | emandi.sai24@gmail.com | +91 7093410660</p>
-  <img src="https://visitor-badge.glitch.me/badge?page_id={{ .Permalink }}" alt="Views"/>
+  <p id="visit-count">Total profile views: loading...</p>
   <p>Created with ❤️ using ChatGPT</p>
 </footer>
 
 
+
         
- 
+ <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA__UoUBMOq0VZd5tVd_bqAaqWXhAquhWM",
+    authDomain: "visitor-counter-acb6e.firebaseapp.com",
+    databaseURL: "https://visitor-counter-acb6e-default-rtdb.firebaseio.com",
+    projectId: "visitor-counter-acb6e",
+    storageBucket: "visitor-counter-acb6e.appspot.com",
+    messagingSenderId: "202746846376",
+    appId: "1:202746846376:web:65f22f4c22c3ed669bb69d",
+    measurementId: "G-TX8VW5SQYP"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const counterRef = db.collection("counters").doc("profileViews");
+
+  counterRef.get().then((doc) => {
+    if (doc.exists) {
+      counterRef.update({ count: firebase.firestore.FieldValue.increment(1) });
+      document.getElementById("visit-count").textContent =
+        "Total profile views: " + (doc.data().count + 1);
+    } else {
+      counterRef.set({ count: 1 });
+      document.getElementById("visit-count").textContent = "Total profile views: 1";
+    }
+  }).catch((error) => {
+    console.error("Error fetching view count:", error);
+    document.getElementById("visit-count").textContent = "Total profile views: unavailable";
+  });
+</script>
+
 
 
 </body>
