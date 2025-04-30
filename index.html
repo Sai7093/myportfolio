@@ -162,10 +162,32 @@
   
 <footer>
   <p>© 2025 Sai Krishna Emandi | emandi.sai24@gmail.com | +91 7093410660</p>
-  <p id="visit-count">Total profile views: loading...</p>
+ <p id="visit-count">Total profile views: loading...</p>
   <p>Created with ❤️ using ChatGPT</p>
 </footer>
+  <script>
+    // Function to get the visit count from local storage
+    function getVisitCount() {
+      let count = localStorage.getItem('visitCount');
+      return count ? parseInt(count) : 0;
+    }
 
+    // Function to set the visit count in local storage
+    function setVisitCount(count) {
+      localStorage.setItem('visitCount', count);
+    }
+
+    // Function to update the visit count on the page
+    function updateVisitCountDisplay() {
+      let count = getVisitCount();
+      count++;
+      setVisitCount(count);
+      document.getElementById('visit-count').textContent = `Total profile views: ${count}`;
+    }
+
+    // Call the function when the page loads
+    window.onload = updateVisitCountDisplay;
+  </script>
 
 
         
