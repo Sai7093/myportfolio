@@ -118,8 +118,8 @@
     <h2>Skills</h2>
     <ul>
       <li>MS Office (Intermediate)</li>
-      <li>AutoCAD (Intermediate)</li>
-      <li>CATIA, ANSYS</li>
+      <li>AutoCAD </li>
+      <li>CATIA</li>
       <li>ProgeCAD</li>
       <li>PLC Programming</li>
       <li>SAP PP (Production Planning Module)</li>
@@ -148,8 +148,8 @@
   <div class="card">
     <h2>Contact Details</h2>
     <ul>
-      <li><b>Email:</b> <a href="mailto:emandi.sai24@gmail.com">emandi.sai24@gmail.com</a></li>
-      <li><b>Phone:</b> <a href="tel:+917093410660">+91 7093410660</a></li>
+     <li><b style="color:#0d0d0d;">Email:</b> <a href="mailto:emandi.sai24@gmail.com" style="color:#0d0d0d;">emandi.sai24@gmail.com</a></li>
+     <li><b style="color:#0d0d0d;">Phone:</b> <a href="tel:+917093410660" style="color:#0d0d0d;">+91 7093410660</a></li>
       <li><b>Location:</b> Visakhapatnam, India</li>
     </ul>
   </div>
@@ -162,47 +162,10 @@
   
 <footer>
   <p>© 2025 Sai Krishna Emandi | emandi.sai24@gmail.com | +91 7093410660</p>
- <p id="visit-count">Total profile views: loading...</p>
   <p>Created with ❤️ using ChatGPT</p>
 </footer>
   
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyA__UoUBMOq0VZd5tVd_bqAaqWXhAquhWM",
-    authDomain: "visitor-counter-acb6e.firebaseapp.com",
-    databaseURL: "https://visitor-counter-acb6e-default-rtdb.firebaseio.com",
-    projectId: "visitor-counter-acb6e",
-    storageBucket: "visitor-counter-acb6e.appspot.com",
-    messagingSenderId: "202746846376",
-    appId: "1:202746846376:web:65f22f4c22c3ed669bb69d",
-    measurementId: "G-TX8VW5SQYP"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const counterRef = db.collection("counters").doc("profileViews");
-
-  counterRef.get().then((doc) => {
-    if (doc.exists) {
-      const previousCount = doc.data().count;
-      document.getElementById("visit-count").textContent =
-        "Total profile views before you: " + previousCount;
-
-      counterRef.update({ count: firebase.firestore.FieldValue.increment(1) });
-    } else {
-      // First time setup
-      document.getElementById("visit-count").textContent = "You are the first visitor!";
-      counterRef.set({ count: 1 });
-    }
-  }).catch((error) => {
-    console.error("Error fetching view count:", error);
-    document.getElementById("visit-count").textContent = "Total profile views: unavailable";
-  });
-</script>
 
 
 </body>
